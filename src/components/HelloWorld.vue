@@ -17,15 +17,54 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+    <ul>
+      <li v-for="item in list" :key="item">{{item}}</li>
+    </ul>
+    <ul>
+      <li v-for="name in user" :key="name">
+        <h6>{{name}}</h6>
+      </li>
+    </ul>
+    <input type="text" v-model="search"/>
+    <h4>{{reversedString}}</h4>
+    <h4>{{num}}</h4>
+    <button @click="fetchMyData()">Click me!</button>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'shit',
+      list: ['fuck', 'shit', 'ass', 'cunt', 'dildo'],
+      num: 1,
+      search: 'shit',
+      user: {
+        name: 'Uttrs'
+      }
+    }
+  },
+  methods: {
+    myClickFunction () {
+      this.num++
+      console.log('I am working')
+    },
+    fetchMyData () {
+      axios.get('https://jsonplaceholder.typicode.com/')
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  },
+  computed: {
+    reversedString () {
+      return this.search.split('').reverse().join('')
     }
   }
 }

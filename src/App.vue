@@ -2,6 +2,9 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-view/>
+    <ul>
+      <li><router-link to="/guild">Guild</router-link></li>
+    </ul>
   </div>
 </template>
 
